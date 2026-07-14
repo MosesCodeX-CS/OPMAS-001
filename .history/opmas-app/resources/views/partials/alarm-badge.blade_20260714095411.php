@@ -1,1 +1,0 @@
-nvim resources/views/partials/alarm-badge.blade.php
