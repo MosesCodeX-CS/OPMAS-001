@@ -1,0 +1,30 @@
+# OPMAS Collector
+
+This collector reads PLC data via Modbus TCP and stores sensor readings and alarms in the Laravel app database.
+
+## Setup
+
+1. Activate the virtual environment:
+   ```bash
+   source collector/venv/bin/activate
+   ```
+2. Install Python dependencies if needed:
+   ```bash
+   python -m pip install -r collector/requirements.txt
+   ```
+3. Copy or edit `collector/.env` to point to the PLC and the Laravel database.
+   - For production, set `DB_DRIVER=mysql` and match the Laravel `opmas-app/.env` MySQL settings.
+   - For local testing, you can use `DB_DRIVER=sqlite` and the Laravel SQLite database file.
+
+## Run
+
+```bash
+source collector/venv/bin/activate
+python collector/main.py
+```
+
+## Notes
+
+- The collector is read-only and does not write to the PLC.
+- The implementation supports both SQLite and MySQL for the Laravel app database.
+- Alarms are generated using thresholds defined in `collector/config.py`.

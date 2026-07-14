@@ -1,0 +1,454 @@
+2026-07-14 12:13:50,671 [INFO] Collector starting. PLC=127.0.0.1:502 DB=mysql://opmas_user@127.0.0.1:3306/opmas
+2026-07-14 12:13:50,672 [ERROR] Connection to (127.0.0.1, 502) failed: [Errno 111] Connection refused
+2026-07-14 12:13:50,672 [ERROR] Could not connect to PLC at 127.0.0.1:502
+2026-07-14 12:13:50,672 [INFO] Collector stopped.
+2026-07-14 12:13:57,487 [INFO] Collector starting. PLC=127.0.0.1:502 DB=mysql://opmas_user@127.0.0.1:3306/opmas
+2026-07-14 12:13:57,489 [ERROR] Connection to (127.0.0.1, 502) failed: [Errno 111] Connection refused
+2026-07-14 12:13:57,489 [ERROR] Could not connect to PLC at 127.0.0.1:502
+2026-07-14 12:13:57,489 [INFO] Collector stopped.
+2026-07-14 12:52:55,117 [INFO] Collector starting. PLC=127.0.0.1:5020 DB=mysql://opmas_user@127.0.0.1:3306/opmas
+2026-07-14 12:52:55,123 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, unit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:00,124 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, unit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:05,125 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, unit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:10,125 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, unit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:15,126 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, unit=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:20,127 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:25,128 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:30,129 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'unit'
+2026-07-14 12:53:41,109 [INFO] Collector starting. PLC=127.0.0.1:5020 DB=mysql://opmas_user@127.0.0.1:3306/opmas
+2026-07-14 12:53:41,114 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:53:46,115 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:53:51,116 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:53:56,116 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:01,117 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:06,119 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:11,120 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:16,120 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:21,122 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:26,123 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:31,124 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:36,125 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:41,125 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:46,127 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:51,129 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:54:56,131 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, slave=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:55:01,133 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, device_id=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:55:06,136 [ERROR] Poll cycle failed: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+Traceback (most recent call last):
+  File "/home/mosisto/opmas/collector/main.py", line 169, in main
+    reading = read_registers(client)
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mosisto/opmas/collector/main.py", line 60, in read_registers
+    result = client.read_holding_registers(address=start, count=count, device_id=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModbusClientMixin.read_holding_registers() got an unexpected keyword argument 'slave'
+2026-07-14 12:55:15,488 [INFO] Collector starting. PLC=127.0.0.1:5020 DB=mysql://opmas_user@127.0.0.1:3306/opmas
+2026-07-14 12:55:15,503 [INFO] Saved sensor reading id=37 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:20,517 [INFO] Saved sensor reading id=38 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:25,530 [INFO] Saved sensor reading id=39 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:30,761 [INFO] Saved sensor reading id=40 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:35,773 [INFO] Saved sensor reading id=41 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:40,780 [INFO] Saved sensor reading id=42 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:45,791 [INFO] Saved sensor reading id=43 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:50,801 [INFO] Saved sensor reading id=44 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:55:55,811 [INFO] Saved sensor reading id=45 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:00,820 [INFO] Saved sensor reading id=46 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:05,828 [INFO] Saved sensor reading id=47 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:10,844 [INFO] Saved sensor reading id=48 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:15,851 [INFO] Saved sensor reading id=49 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:20,864 [INFO] Saved sensor reading id=50 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:25,882 [INFO] Saved sensor reading id=51 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:30,897 [INFO] Saved sensor reading id=52 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:35,906 [INFO] Saved sensor reading id=53 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:40,921 [INFO] Saved sensor reading id=54 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:45,939 [INFO] Saved sensor reading id=55 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:50,956 [INFO] Saved sensor reading id=56 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:56:55,973 [INFO] Saved sensor reading id=57 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:00,987 [INFO] Saved sensor reading id=58 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:06,000 [INFO] Saved sensor reading id=59 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:11,015 [INFO] Saved sensor reading id=60 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:16,033 [INFO] Saved sensor reading id=61 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:21,043 [INFO] Saved sensor reading id=62 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:26,058 [INFO] Saved sensor reading id=63 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:31,070 [INFO] Saved sensor reading id=64 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:36,084 [INFO] Saved sensor reading id=65 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:41,099 [INFO] Saved sensor reading id=66 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:46,114 [INFO] Saved sensor reading id=67 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:51,123 [INFO] Saved sensor reading id=68 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:57:56,139 [INFO] Saved sensor reading id=69 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:01,153 [INFO] Saved sensor reading id=70 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:06,163 [INFO] Saved sensor reading id=71 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:11,185 [INFO] Saved sensor reading id=72 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:16,200 [INFO] Saved sensor reading id=73 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:21,215 [INFO] Saved sensor reading id=74 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:26,233 [INFO] Saved sensor reading id=75 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:31,248 [INFO] Saved sensor reading id=76 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:36,262 [INFO] Saved sensor reading id=77 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:41,275 [INFO] Saved sensor reading id=78 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:46,294 [INFO] Saved sensor reading id=79 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:51,311 [INFO] Saved sensor reading id=80 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:58:56,322 [INFO] Saved sensor reading id=81 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:01,342 [INFO] Saved sensor reading id=82 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:06,354 [INFO] Saved sensor reading id=83 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:11,364 [INFO] Saved sensor reading id=84 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:16,374 [INFO] Saved sensor reading id=85 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:21,385 [INFO] Saved sensor reading id=86 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:26,399 [INFO] Saved sensor reading id=87 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:31,415 [INFO] Saved sensor reading id=88 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:36,432 [INFO] Saved sensor reading id=89 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:41,452 [INFO] Saved sensor reading id=90 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:46,468 [INFO] Saved sensor reading id=91 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:51,487 [INFO] Saved sensor reading id=92 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 12:59:56,505 [INFO] Saved sensor reading id=93 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:01,521 [INFO] Saved sensor reading id=94 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:06,533 [INFO] Saved sensor reading id=95 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:11,548 [INFO] Saved sensor reading id=96 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:16,560 [INFO] Saved sensor reading id=97 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:21,579 [INFO] Saved sensor reading id=98 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:26,591 [INFO] Saved sensor reading id=99 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:31,603 [INFO] Saved sensor reading id=100 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:36,619 [INFO] Saved sensor reading id=101 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:41,636 [INFO] Saved sensor reading id=102 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:46,645 [INFO] Saved sensor reading id=103 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:51,662 [INFO] Saved sensor reading id=104 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:00:56,678 [INFO] Saved sensor reading id=105 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:01,694 [INFO] Saved sensor reading id=106 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:06,704 [INFO] Saved sensor reading id=107 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:11,719 [INFO] Saved sensor reading id=108 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:16,734 [INFO] Saved sensor reading id=109 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:21,750 [INFO] Saved sensor reading id=110 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:26,761 [INFO] Saved sensor reading id=111 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:31,774 [INFO] Saved sensor reading id=112 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:36,784 [INFO] Saved sensor reading id=113 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:41,794 [INFO] Saved sensor reading id=114 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:46,803 [INFO] Saved sensor reading id=115 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:51,818 [INFO] Saved sensor reading id=116 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:01:56,832 [INFO] Saved sensor reading id=117 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:01,845 [INFO] Saved sensor reading id=118 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:06,859 [INFO] Saved sensor reading id=119 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:11,872 [INFO] Saved sensor reading id=120 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:16,891 [INFO] Saved sensor reading id=121 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:21,908 [INFO] Saved sensor reading id=122 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:26,925 [INFO] Saved sensor reading id=123 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:31,943 [INFO] Saved sensor reading id=124 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:36,959 [INFO] Saved sensor reading id=125 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:41,975 [INFO] Saved sensor reading id=126 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:46,991 [INFO] Saved sensor reading id=127 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:52,008 [INFO] Saved sensor reading id=128 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:02:57,019 [INFO] Saved sensor reading id=129 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:02,034 [INFO] Saved sensor reading id=130 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:07,044 [INFO] Saved sensor reading id=131 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:12,052 [INFO] Saved sensor reading id=132 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:17,066 [INFO] Saved sensor reading id=133 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:22,083 [INFO] Saved sensor reading id=134 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:27,100 [INFO] Saved sensor reading id=135 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:32,112 [INFO] Saved sensor reading id=136 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:37,130 [INFO] Saved sensor reading id=137 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:42,147 [INFO] Saved sensor reading id=138 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:47,162 [INFO] Saved sensor reading id=139 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:52,168 [INFO] Saved sensor reading id=140 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:03:57,183 [INFO] Saved sensor reading id=141 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:02,200 [INFO] Saved sensor reading id=142 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:07,216 [INFO] Saved sensor reading id=143 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:12,223 [INFO] Saved sensor reading id=144 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:17,238 [INFO] Saved sensor reading id=145 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:22,257 [INFO] Saved sensor reading id=146 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:27,270 [INFO] Saved sensor reading id=147 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:32,285 [INFO] Saved sensor reading id=148 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:37,298 [INFO] Saved sensor reading id=149 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:42,313 [INFO] Saved sensor reading id=150 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:47,322 [INFO] Saved sensor reading id=151 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:52,337 [INFO] Saved sensor reading id=152 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:04:57,346 [INFO] Saved sensor reading id=153 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:02,362 [INFO] Saved sensor reading id=154 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:07,377 [INFO] Saved sensor reading id=155 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:12,389 [INFO] Saved sensor reading id=156 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:17,402 [INFO] Saved sensor reading id=157 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:22,415 [INFO] Saved sensor reading id=158 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:27,428 [INFO] Saved sensor reading id=159 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:32,450 [INFO] Saved sensor reading id=160 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:37,465 [INFO] Saved sensor reading id=161 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:42,471 [INFO] Saved sensor reading id=162 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:47,484 [INFO] Saved sensor reading id=163 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:52,493 [INFO] Saved sensor reading id=164 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:05:57,508 [INFO] Saved sensor reading id=165 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:02,523 [INFO] Saved sensor reading id=166 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:07,539 [INFO] Saved sensor reading id=167 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:12,552 [INFO] Saved sensor reading id=168 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:17,562 [INFO] Saved sensor reading id=169 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:22,578 [INFO] Saved sensor reading id=170 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:27,595 [INFO] Saved sensor reading id=171 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:32,612 [INFO] Saved sensor reading id=172 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:37,629 [INFO] Saved sensor reading id=173 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:42,642 [INFO] Saved sensor reading id=174 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:47,647 [INFO] Saved sensor reading id=175 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:52,659 [INFO] Saved sensor reading id=176 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:06:57,665 [INFO] Saved sensor reading id=177 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:02,679 [INFO] Saved sensor reading id=178 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:07,693 [INFO] Saved sensor reading id=179 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:12,708 [INFO] Saved sensor reading id=180 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:17,722 [INFO] Saved sensor reading id=181 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:22,736 [INFO] Saved sensor reading id=182 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:27,743 [INFO] Saved sensor reading id=183 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:32,763 [INFO] Saved sensor reading id=184 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:37,774 [INFO] Saved sensor reading id=185 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:42,779 [INFO] Saved sensor reading id=186 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:47,794 [INFO] Saved sensor reading id=187 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:52,806 [INFO] Saved sensor reading id=188 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:07:57,822 [INFO] Saved sensor reading id=189 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:03,558 [INFO] Saved sensor reading id=190 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:08,573 [INFO] Saved sensor reading id=191 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:13,586 [INFO] Saved sensor reading id=192 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:18,599 [INFO] Saved sensor reading id=193 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:23,616 [INFO] Saved sensor reading id=194 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:28,629 [INFO] Saved sensor reading id=195 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:33,637 [INFO] Saved sensor reading id=196 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:38,652 [INFO] Saved sensor reading id=197 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:43,669 [INFO] Saved sensor reading id=198 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:48,678 [INFO] Saved sensor reading id=199 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:53,687 [INFO] Saved sensor reading id=200 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:08:58,699 [INFO] Saved sensor reading id=201 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:03,708 [INFO] Saved sensor reading id=202 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:08,717 [INFO] Saved sensor reading id=203 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:13,732 [INFO] Saved sensor reading id=204 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:18,746 [INFO] Saved sensor reading id=205 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:23,763 [INFO] Saved sensor reading id=206 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:28,780 [INFO] Saved sensor reading id=207 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:33,790 [INFO] Saved sensor reading id=208 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:38,800 [INFO] Saved sensor reading id=209 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:43,816 [INFO] Saved sensor reading id=210 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:48,829 [INFO] Saved sensor reading id=211 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:53,838 [INFO] Saved sensor reading id=212 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:09:59,020 [INFO] Saved sensor reading id=213 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:04,205 [INFO] Saved sensor reading id=214 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:09,217 [INFO] Saved sensor reading id=215 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:14,234 [INFO] Saved sensor reading id=216 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:19,251 [INFO] Saved sensor reading id=217 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:24,267 [INFO] Saved sensor reading id=218 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:29,283 [INFO] Saved sensor reading id=219 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:34,905 [INFO] Saved sensor reading id=220 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:40,211 [INFO] Saved sensor reading id=221 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:45,228 [INFO] Saved sensor reading id=222 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:50,244 [INFO] Saved sensor reading id=223 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:10:55,261 [INFO] Saved sensor reading id=224 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:00,277 [INFO] Saved sensor reading id=225 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:05,291 [INFO] Saved sensor reading id=226 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:10,305 [INFO] Saved sensor reading id=227 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:15,320 [INFO] Saved sensor reading id=228 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:20,335 [INFO] Saved sensor reading id=229 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:25,351 [INFO] Saved sensor reading id=230 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:30,363 [INFO] Saved sensor reading id=231 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:35,380 [INFO] Saved sensor reading id=232 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:40,393 [INFO] Saved sensor reading id=233 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:45,404 [INFO] Saved sensor reading id=234 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:50,413 [INFO] Saved sensor reading id=235 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:11:55,430 [INFO] Saved sensor reading id=236 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:00,442 [INFO] Saved sensor reading id=237 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:05,458 [INFO] Saved sensor reading id=238 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:10,475 [INFO] Saved sensor reading id=239 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:15,487 [INFO] Saved sensor reading id=240 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:20,497 [INFO] Saved sensor reading id=241 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:25,512 [INFO] Saved sensor reading id=242 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:30,528 [INFO] Saved sensor reading id=243 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:35,537 [INFO] Saved sensor reading id=244 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
+2026-07-14 13:12:40,543 [INFO] Saved sensor reading id=245 {'pressure': 5.5, 'purity': 93.5, 'flow_rate': 120.0, 'temperature': 35.0, 'tank_level': 72.0, 'compressor_status': 1, 'bed_a_status': 1, 'bed_b_status': 0}
