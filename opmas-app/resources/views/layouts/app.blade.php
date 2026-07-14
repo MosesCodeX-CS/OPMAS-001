@@ -66,8 +66,8 @@
 
     <!-- Sidebar -->
     <aside class="w-72 flex flex-col min-h-screen fixed shadow-lg bg-[#19409A] text-white z-30">
-        <!-- Top Accent Green Line -->
-        <div class="h-1 bg-[#198754] w-full"></div>
+        <!-- Top Accent Green Line (removed) -->
+        <!-- Removed the thin green accent line above the logo as requested -->
 
         <!-- Full width white logo header -->
         <div class="bg-white py-4 px-6 flex justify-center items-center border-b border-gray-100">
@@ -177,27 +177,179 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="ml-72 flex-1 p-8 min-h-screen">
-        @if(session('status'))
-            <div class="mb-6 rounded-xl border px-5 py-4 text-sm text-[#0F5132] bg-[#D1E7DD] border-[#BADBCC] flex items-center gap-3 animate-fade-in" role="alert">
-                <i data-lucide="check-circle" class="w-5 h-5 text-[#15803D] flex-shrink-0"></i>
-                <div>{{ session('status') }}</div>
+    <main class="ml-72 flex-1 min-h-screen flex flex-col">
+        <!-- Top Header Bar -->
+        <header class="bg-white border-b border-gray-200 h-16 px-8 flex items-center justify-between z-10 shadow-sm flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="activity" class="w-5 h-5 text-[#2B8AC6]"></i>
+                    <span class="text-xs font-bold text-[#6B7A90] uppercase tracking-wider">AIC Kijabe Hospital Oxygen Plant Registry</span>
+                </div>
+                
+                <!-- Live Plant Health Status Pill -->
+                <div id="header-health-status" class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-colors duration-300 bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                    <span>Plant Health: <span id="header-health-score">100%</span></span>
+                </div>
             </div>
-        @endif
-
-        @if($errors->any())
-            <div class="mb-6 rounded-xl border px-5 py-4 text-sm text-[#842029] bg-[#F8D7DA] border-[#F5C2C7] flex items-center gap-3 animate-fade-in" role="alert">
-                <i data-lucide="alert-triangle" class="w-5 h-5 text-[#B91C1C] flex-shrink-0"></i>
-                <div>{{ $errors->first() }}</div>
+            
+            <div class="flex items-center gap-6">
+                <!-- Notifications Bell -->
+                <div class="relative" id="notification-bell-container">
+                    <button onclick="toggleNotifications()" class="p-2 rounded-full hover:bg-gray-100 transition-colors relative text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <!-- Red dot badge if active alarms exist -->
+                        <span id="bell-badge" class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-red-600 border border-white hidden animate-pulse"></span>
+                    </button>
+                    
+                    <!-- Notifications Dropdown Popover -->
+                    <div id="notifications-dropdown" class="absolute right-0 mt-3 bg-white border border-gray-200 rounded-xl shadow-xl w-80 hidden z-50 overflow-hidden">
+                        <div class="p-4 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
+                            <span class="font-bold text-xs uppercase tracking-wider text-[#1B3A6B]">Active Alerts</span>
+                            <a href="{{ route('alarms') }}" class="text-[10px] font-bold text-[#2B8AC6] hover:underline uppercase">View All</a>
+                        </div>
+                        <div id="notifications-list" class="max-h-60 overflow-y-auto divide-y divide-gray-100 text-xs text-[#1A2A3A]">
+                            <p class="p-4 text-center text-gray-400 italic">Checking alerts...</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        @endif
+        </header>
 
-        @yield('content')
+        <!-- Main Inner Content with padding -->
+        <div class="p-8 flex-1">
+            @if(session('status'))
+                <div class="mb-6 rounded-xl border px-5 py-4 text-sm text-[#0F5132] bg-[#D1E7DD] border-[#BADBCC] flex items-center gap-3 animate-fade-in" role="alert">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-[#15803D] flex-shrink-0"></i>
+                    <div>{{ session('status') }}</div>
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="mb-6 rounded-xl border px-5 py-4 text-sm text-[#842029] bg-[#F8D7DA] border-[#F5C2C7] flex items-center gap-3 animate-fade-in" role="alert">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-[#B91C1C] flex-shrink-0"></i>
+                    <div>{{ $errors->first() }}</div>
+                </div>
+            @endif
+
+            @yield('content')
+        </div>
     </main>
 
     <script>
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notifications-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('notification-bell-container');
+            const dropdown = document.getElementById('notifications-dropdown');
+            if (container && !container.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Global state variable
+        window.latestSystemStatus = null;
+
+        // Fetch active system status (telemetry + alarms)
+        async function fetchSystemStatus() {
+            try {
+                const response = await fetch('{{ route('api.system-status') }}');
+                if (!response.ok) return;
+                const data = await response.json();
+                
+                window.latestSystemStatus = data;
+                
+                // Dispatch event for local page listening
+                window.dispatchEvent(new CustomEvent('system-status-updated', { detail: data }));
+                
+                // Update Notifications
+                updateHeaderNotifications(data.active_alarms);
+                
+                // Update Health status pill
+                if (data.reading) {
+                    updateHeaderHealth(data.reading);
+                }
+            } catch (err) {
+                console.error('Error fetching system status:', err);
+            }
+        }
+
+        function updateHeaderNotifications(alarms) {
+            const badge = document.getElementById('bell-badge');
+            const list = document.getElementById('notifications-list');
+            
+            if (alarms.length > 0) {
+                badge.classList.remove('hidden');
+                let html = '';
+                alarms.forEach(alarm => {
+                    const dateStr = new Date(alarm.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    const severityColor = alarm.severity === 'CRITICAL' ? 'text-red-600' : 'text-amber-600';
+                    html += `
+                        <div class="p-4 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold ${severityColor} uppercase tracking-wider text-[10px]">${alarm.severity}</span>
+                                <span class="text-gray-400 text-[10px]">${dateStr}</span>
+                            </div>
+                            <p class="text-gray-700 leading-snug">${alarm.message}</p>
+                        </div>
+                    `;
+                });
+                list.innerHTML = html;
+            } else {
+                badge.classList.add('hidden');
+                list.innerHTML = `
+                    <div class="p-6 text-center text-gray-400 italic">
+                        All systems operating normally.
+                    </div>
+                `;
+            }
+        }
+
+        function updateHeaderHealth(data) {
+            let score = 100;
+            if (data.compressor_status === 2) score -= 50;
+            else if (data.compressor_status === 0) score -= 20;
+            
+            if (data.pressure < 4.0) score -= 30;
+            else if (data.pressure < 4.8) score -= 10;
+            
+            if (data.purity < 90.0) score -= 40;
+            else if (data.purity < 92.5) score -= 15;
+            
+            if (data.temperature >= 80.0) score -= 25;
+            else if (data.temperature >= 55.0) score -= 10;
+            
+            if (data.tank_level < 15.0) score -= 15;
+            
+            score = Math.max(0, score);
+            
+            const pill = document.getElementById('header-health-status');
+            const scoreSpan = document.getElementById('header-health-score');
+            
+            scoreSpan.textContent = score + '%';
+            pill.classList.remove('hidden');
+            
+            // Set styles based on score
+            if (score >= 80) {
+                pill.className = "hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200";
+                pill.querySelector('span').className = "w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse";
+            } else if (score >= 50) {
+                pill.className = "hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200";
+                pill.querySelector('span').className = "w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse";
+            } else {
+                pill.className = "hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200 animate-bounce";
+                pill.querySelector('span').className = "w-1.5 h-1.5 rounded-full bg-red-600 animate-ping";
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
+            fetchSystemStatus();
+            setInterval(fetchSystemStatus, 5000);
         });
     </script>
 </body>

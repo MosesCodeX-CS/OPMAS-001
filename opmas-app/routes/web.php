@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/export', [ReportController::class, 'export'])->name('reports.export');
     Route::get('/equipment', [EquipmentController::class, 'index'])->name('equipment');
     Route::get('/api/latest-reading', [DashboardController::class, 'latestReading'])->name('api.latest');
+    Route::get('/api/active-alarms', [AlarmController::class, 'activeAlarms'])->name('api.active-alarms');
+    Route::get('/api/system-status', [DashboardController::class, 'systemStatus'])->name('api.system-status');
 
     // Admin & System Admin Actions (Resolve Alarms, Edit Equipment Status, Trigger Telemetry)
     Route::middleware('role:system_admin,admin')->group(function () {

@@ -26,4 +26,19 @@ class DashboardController extends Controller
     {
         return response()->json(SensorReading::latest_reading());
     }
+
+    public function systemStatus()
+    {
+        $reading = SensorReading::latest_reading();
+        $activeAlarms = Alarm::active()
+            ->orderByRaw("CASE severity WHEN 'CRITICAL' THEN 1 WHEN 'WARNING' THEN 2 WHEN 'INFO' THEN 3 ELSE 4 END")
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+            
+        return response()->json([
+            'reading' => $reading,
+            'active_alarms' => $activeAlarms,
+        ]);
+    }
 }
