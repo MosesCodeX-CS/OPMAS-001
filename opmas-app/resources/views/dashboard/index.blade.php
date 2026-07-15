@@ -278,7 +278,7 @@
 @endif
 
 <!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
 <script>
 let chart;
@@ -382,6 +382,10 @@ function updateDashboard(data, age = null) {
     const ring = document.getElementById('health-ring');
     const diagText = document.getElementById('diagnostics-text');
     const diagReasons = document.getElementById('diagnostics-reasons');
+    const cycleIcon = document.getElementById('cycle-icon');
+    const cycleLabel = document.getElementById('cycle-label');
+    const cycleDesc = document.getElementById('cycle-desc');
+    const lastUpdatedEl = document.getElementById('last-updated');
 
     if (age !== null && age > 15) {
         if (scoreVal) scoreVal.textContent = "OFFLINE";
@@ -399,7 +403,6 @@ function updateDashboard(data, age = null) {
                 </div>
             `;
         }
-        const lastUpdatedEl = document.getElementById('last-updated');
         if (lastUpdatedEl) lastUpdatedEl.textContent = "Offline";
         return;
     }
@@ -491,11 +494,9 @@ function updateDashboard(data, age = null) {
     healthScore = Math.max(0, healthScore);
     
     // Update UI elements
-    const scoreVal = document.getElementById('health-score');
     if (scoreVal) scoreVal.textContent = healthScore + '%';
     
     // Update SVG circle stroke
-    const ring = document.getElementById('health-ring');
     if (ring) {
         const offset = 377 - (377 * healthScore / 100);
         ring.style.strokeDashoffset = offset;
@@ -510,9 +511,6 @@ function updateDashboard(data, age = null) {
     }
     
     // Build diagnostics summary
-    const diagText = document.getElementById('diagnostics-text');
-    const diagReasons = document.getElementById('diagnostics-reasons');
-    
     if (diagText && diagReasons) {
         if (healthScore === 100) {
             diagText.textContent = "All components operating normally. Zeolite PSA process running at peak efficiency.";
@@ -539,10 +537,6 @@ function updateDashboard(data, age = null) {
     }
     
     // Update cycle labels
-    const cycleIcon = document.getElementById('cycle-icon');
-    const cycleLabel = document.getElementById('cycle-label');
-    const cycleDesc = document.getElementById('cycle-desc');
-    
     if (cycleIcon && cycleLabel && cycleDesc) {
         if (data.bed_a_status && !data.bed_b_status) {
             cycleLabel.textContent = "PSA Phase A: Adsorption";
@@ -559,7 +553,6 @@ function updateDashboard(data, age = null) {
         }
     }
 
-    const lastUpdatedEl = document.getElementById('last-updated');
     if (lastUpdatedEl) lastUpdatedEl.textContent = 'Just now';
 
     const timestamp = new Date(data.created_at || new Date()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
