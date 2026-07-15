@@ -1,0 +1,13 @@
+[Unit]
+Description=OPMAS Modbus PLC Simulator Service
+After=network.target
+
+[Service]
+Type=simple
+User=mosisto
+WorkingDirectory=/home/mosisto/opmas
+ExecStart=/home/mosisto/opmas/collector/venv/bin/python3 /home/mosisto/opmas/collector/simulator.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

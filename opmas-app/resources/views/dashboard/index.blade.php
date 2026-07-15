@@ -364,18 +364,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run initial update with server data
     const initialData = @json($reading);
     if (initialData) {
-        updateDashboard(initialData);
+        const initialAge = {{ $reading ? abs(now()->diffInSeconds($reading->created_at)) : 'null' }};
+        updateDashboard(initialData, initialAge);
     }
 
     // Listen to global status updates from top navbar
     window.addEventListener('system-status-updated', (event) => {
         const data = event.detail.reading;
+        const age = event.detail.reading_age;
         if (!data) return;
-        updateDashboard(data);
+        updateDashboard(data, age);
     });
 });
 
-function updateDashboard(data) {
+function updateDashboard(data, age = null) {
+    const scoreVal = document.getElementById('health-score');
+    const ring = document.getElementById('health-ring');
+    const diagText = document.getElementById('diagnostics-text');
+    const diagReasons = document.getElementById('diagnostics-reasons');
+
+    if (age !== null && age > 15) {
+        if (scoreVal) scoreVal.textContent = "OFFLINE";
+        if (ring) {
+            ring.style.strokeDashoffset = 377;
+            ring.setAttribute('stroke', '#EF4444');
+        }
+        if (diagText && diagReasons) {
+            diagText.textContent = "CRITICAL: The telemetry collector service is offline. System data is currently frozen.";
+            diagText.className = "text-xs text-red-700 font-semibold leading-relaxed mb-3";
+            diagReasons.innerHTML = `
+                <div class="flex items-start gap-1.5 text-red-600 font-bold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 mt-1.5 flex-shrink-0"></span>
+                    <span>Modbus Collector service stopped or physical PLC disconnected. Check background logs.</span>
+                </div>
+            `;
+        }
+        const lastUpdatedEl = document.getElementById('last-updated');
+        if (lastUpdatedEl) lastUpdatedEl.textContent = "Offline";
+        return;
+    }
+
     document.getElementById('telemetry-pressure').textContent = parseFloat(data.pressure).toFixed(2);
     document.getElementById('telemetry-purity').textContent = parseFloat(data.purity).toFixed(2);
     document.getElementById('telemetry-flow_rate').textContent = parseFloat(data.flow_rate).toFixed(2);

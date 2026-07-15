@@ -71,7 +71,7 @@
 
         <!-- Full width white logo header -->
         <div class="bg-white py-4 px-6 flex justify-center items-center border-b border-gray-100">
-            <img src="{{ asset('images/Kijabe-logo.svg') }}" alt="AIC Kijabe Hospital" class="w-full h-auto object-contain" />
+            <img src="{{ asset('images/Kijabe-logo.png') }}" alt="AIC Kijabe Hospital" class="w-full h-auto object-contain" />
         </div>
 
         <!-- Navigation Links -->
@@ -271,7 +271,7 @@
                 
                 // Update Health status pill
                 if (data.reading) {
-                    updateHeaderHealth(data.reading);
+                    updateHeaderHealth(data.reading, data.reading_age);
                 }
             } catch (err) {
                 console.error('Error fetching system status:', err);
@@ -309,7 +309,20 @@
             }
         }
 
-        function updateHeaderHealth(data) {
+        function updateHeaderHealth(data, age) {
+            const pill = document.getElementById('header-health-status');
+            const scoreSpan = document.getElementById('header-health-score');
+            
+            pill.classList.remove('hidden');
+
+            // If reading_age is greater than 15 seconds, collector is offline
+            if (age !== null && age > 15) {
+                scoreSpan.textContent = "OFFLINE";
+                pill.className = "hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200 animate-bounce";
+                pill.querySelector('span').className = "w-1.5 h-1.5 rounded-full bg-red-600 animate-ping";
+                return;
+            }
+
             let score = 100;
             if (data.compressor_status === 2) score -= 50;
             else if (data.compressor_status === 0) score -= 20;
@@ -327,11 +340,7 @@
             
             score = Math.max(0, score);
             
-            const pill = document.getElementById('header-health-status');
-            const scoreSpan = document.getElementById('header-health-score');
-            
             scoreSpan.textContent = score + '%';
-            pill.classList.remove('hidden');
             
             // Set styles based on score
             if (score >= 80) {

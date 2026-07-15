@@ -1,0 +1,13 @@
+[Unit]
+Description=OPMAS Telemetry Collector Service
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=mosisto
+WorkingDirectory=/home/mosisto/opmas
+ExecStart=/home/mosisto/opmas/collector/venv/bin/python3 /home/mosisto/opmas/collector/main.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

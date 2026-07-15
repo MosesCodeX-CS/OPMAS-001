@@ -39,6 +39,7 @@ class DashboardController extends Controller
         return response()->json([
             'reading' => $reading,
             'active_alarms' => $activeAlarms,
+            'reading_age' => $reading ? abs(now()->diffInSeconds($reading->created_at)) : null,
         ]);
     }
 }
