@@ -17,6 +17,9 @@ try:
 except ImportError:  # pragma: no cover
     mysql = None
 
+# Ensure parent directory of log file exists to prevent startup FileNotFoundError
+Path(LOG_FILE).parent.mkdir(parents=True, exist_ok=True)
+
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,

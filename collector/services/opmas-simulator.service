@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=de-favre
-WorkingDirectory=/home/de-favre/oxygenplant/OPMAS-001/collector
-ExecStart=/home/de-favre/oxygenplant/OPMAS-001/collector/.venv/bin/python3 /home/de-favre/oxygenplant/OPMAS-001/collector/simulator.py
+User={{USER}}
+WorkingDirectory={{WORKING_DIR}}
+ExecStart={{PYTHON_PATH}} {{WORKING_DIR}}/simulator.py
 Restart=on-failure
 
 [Install]
