@@ -6,8 +6,9 @@ echo "-----------------------------------"
 
 # Copy service files
 echo "Copying service configuration files to /etc/systemd/system/..."
-sudo cp /home/mosisto/opmas/collector/services/opmas-simulator.service /etc/systemd/system/
-sudo cp /home/mosisto/opmas/collector/services/opmas-collector.service /etc/systemd/system/
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+sudo cp "$SCRIPT_DIR/opmas-simulator.service" /etc/systemd/system/
+sudo cp "$SCRIPT_DIR/opmas-collector.service" /etc/systemd/system/
 
 # Reload systemd
 echo "Reloading systemd manager configuration..."

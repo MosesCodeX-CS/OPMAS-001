@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPMAS — Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background:
+                linear-gradient(rgba(7, 21, 39, 0.28), rgba(7, 21, 39, 0.42)),
+                url("{{ asset('images/oxygen-plant-bg.jpg') }}") center / cover no-repeat fixed;
+        }
+    </style>
 </head>
-<body class="min-h-screen flex items-center justify-center" style="background-color:#F4F6F9;">
-    <div class="w-full max-w-sm">
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-18 h-14 rounded-full mb-4 shadow"
-                 style="background-color:#1B3A6B;">
-                <span class="text-white text-xl font-bold">AICKH</span>
+<body class="min-h-screen flex items-center justify-center px-4 py-10">
+    <div class="w-full max-w-md">
+        <div class="rounded-xl px-8 py-9 shadow-2xl border border-white/15" style="background:linear-gradient(180deg, rgba(59,174,209,0.96), rgba(35,151,190,0.96));">
+            <div class="text-center mb-7">
+                <div class="inline-flex items-center justify-center w-20 h-16 mb-4">
+                    <img src="{{ asset('images/Kijabe-logo.png') }}" alt="AIC Kijabe Hospital" class="max-h-16 max-w-40 object-contain">
+                </div>
+                <h1 class="text-3xl font-light tracking-wide text-white">Kijabe Hospital Portal</h1>
+                <p class="text-sm mt-2 text-white/90">Oxygen Plant Monitoring System</p>
+                <p class="text-xs mt-0.5 font-mono text-white/80">OPMAS-001 · OX-PLANT-01</p>
             </div>
-            <h1 class="text-2xl font-bold" style="color:#1B3A6B;">Aic Kijabe Hospital</h1>
-            <p class="text-sm mt-1" style="color:#6B7A90;">Oxygen Plant Monitoring System</p>
-            <p class="text-xs mt-0.5 font-mono" style="color:#2B8AC6;">OPMAS-001 · OX-PLANT-01</p>
-        </div>
 
-        <div class="rounded-2xl p-8 shadow-sm border" style="background:#FFFFFF; border-color:#DDE3EE;">
             @if($errors->any())
                 <div class="rounded-lg px-4 py-3 mb-5 border text-sm"
                      style="background:#FEE2E2; border-color:#FCA5A5; color:#B91C1C;">
@@ -28,28 +34,30 @@
             <form method="POST" action="/login" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-xs font-semibold mb-1.5" style="color:#1B3A6B;">Email Address</label>
+                    <label class="block text-sm font-semibold mb-1.5 text-white">Email Address</label>
                     <input type="email" name="email" required value="{{ old('email') }}"
-                        class="w-full rounded-lg px-4 py-2.5 text-sm border focus:outline-none"
-                        style="background:#F4F6F9; border-color:#DDE3EE; color:#1A2A3A;">
+                        placeholder="Email Address"
+                        class="w-full rounded-md px-4 py-3 text-base border-0 focus:outline-none focus:ring-2"
+                        style="background:#EAF3FA; color:#1A2A3A; --tw-ring-color:#FFFFFF;">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold mb-1.5" style="color:#1B3A6B;">Password</label>
+                    <label class="block text-sm font-semibold mb-1.5 text-white">Password</label>
                     <input type="password" name="password" required
-                        class="w-full rounded-lg px-4 py-2.5 text-sm border focus:outline-none"
-                        style="background:#F4F6F9; border-color:#DDE3EE; color:#1A2A3A;">
+                        placeholder="Password"
+                        class="w-full rounded-md px-4 py-3 text-base border-0 focus:outline-none focus:ring-2"
+                        style="background:#EAF3FA; color:#1A2A3A; --tw-ring-color:#FFFFFF;">
                 </div>
                 <button type="submit"
-                    class="w-full text-white text-sm font-semibold py-2.5 rounded-lg mt-2 transition-opacity hover:opacity-90"
-                    style="background-color:#1B3A6B;">
+                    class="w-full text-sm font-bold py-3 rounded-md mt-2 shadow transition-opacity hover:opacity-90"
+                    style="background-color:#FFFFFF; color:#0988C8;">
                     Sign In
                 </button>
             </form>
-        </div>
 
-        <p class="text-center text-xs mt-6" style="color:#6B7A90;">
-            © {{ date('Y') }} Kijabe Hospital · Confidential System
-        </p>
+            <p class="text-center text-sm mt-7 text-white">
+                © {{ date('Y') }} Kijabe Hospital · Confidential System
+            </p>
+        </div>
     </div>
 </body>
 </html>
