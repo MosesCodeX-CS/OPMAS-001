@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'system_admin@example.com',
         ], [
             'name' => 'System Admin',
-            'password' => 'password',
+            'password' => 'system_admin_password',
             'role' => 'system_admin',
         ]);
 
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
         ], [
             'name' => 'Admin User',
-            'password' => 'password',
+            'password' => 'admin_password',
             'role' => 'admin',
         ]);
 
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@example.com',
         ], [
             'name' => 'Normal User',
-            'password' => 'password',
+            'password' => 'user_password',
             'role' => 'user',
         ]);
 

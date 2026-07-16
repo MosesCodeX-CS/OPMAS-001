@@ -45,8 +45,15 @@ class TelemetryController extends Controller
             $temperature = rand(32, 44);
             $tankLevel = rand(60, 85);
             $compressorStatus = 1; // RUNNING
-            $bedA = rand(0, 1);
-            $bedB = $bedA === 0 ? 1 : 0;
+
+            $latestReading = SensorReading::query()->latest('created_at')->first();
+            $bedA = 1;
+            $bedB = 0;
+
+            if ($latestReading) {
+                $bedA = (int) !$latestReading->bed_a_status;
+                $bedB = (int) !$bedA;
+            }
         }
 
         $reading = SensorReading::create([
