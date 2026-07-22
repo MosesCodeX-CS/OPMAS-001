@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alarm extends Model
 {
-    protected $fillable = ['type', 'severity', 'message', 'resolved', 'resolved_at', 'resolved_by'];
+    protected $fillable = ['type', 'severity', 'message', 'resolved', 'resolved_at', 'resolved_by', 'alarm_rule_id'];
 
     protected $casts = [
         'resolved'    => 'boolean',
@@ -16,6 +16,11 @@ class Alarm extends Model
     public function resolvedByUser()
     {
         return $this->belongsTo(User::class, 'resolved_by');
+    }
+
+    public function alarmRule()
+    {
+        return $this->belongsTo(AlarmRule::class);
     }
 
     public function scopeActive($query)

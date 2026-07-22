@@ -1,6 +1,6 @@
-import logging
 import asyncio
 import random
+import logging
 from pymodbus.server import StartAsyncTcpServer
 from pymodbus.pdu.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock, ModbusDeviceContext, ModbusServerContext
@@ -9,73 +9,107 @@ from pymodbus.datastore import ModbusSequentialDataBlock, ModbusDeviceContext, M
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 log = logging.getLogger(__name__)
 
-# Global cycle counter for PSA bed alternation
-cycle_counter = 0
+class PlantSimulator:
+    def __init__(self) -> None:
+        self.cycle = 0
+        self.pressure = 6.3
+        self.purity = 94.1
+        self.flow_rate = 122.0
+        self.temperature = 36.5
+        self.tank_level = 78.0
+        self.compressor_status = 1
+        self.bed_a_status = 1
+        self.bed_b_status = 0
+        self.fault_timer = 0
+        self.bed_cycle_length = 20
 
-async def plc_action(function_code, start_address, address, count, current_registers, set_values):
-    global cycle_counter
-    # Only intercept holding registers read operations (function code 3)
-    if function_code == 3:
-        cycle_counter += 1
-        
-        # Alternating beds every 5 read cycles
-        bed_a_status = 1 if (cycle_counter // 5) % 2 == 0 else 0
-        bed_b_status = 1 - bed_a_status
-        
-        # Fluctuate values in normal ranges to simulate dynamic oxygen plant process
-        pressure_val = int(random.uniform(5.5, 7.5) * 10)
-        purity_val = int(random.uniform(92.5, 95.5) * 10)
-        flow_rate_val = int(random.uniform(115, 135))
-        temperature_val = int(random.uniform(32, 44))
-        tank_level_val = int(random.uniform(65, 85))
-        compressor_status = 1
+    def clamp(self, value: float, minimum: float, maximum: float) -> float:
+        return max(minimum, min(maximum, value))
 
-        # 5% chance of simulating a critical fault reading (e.g. pressure drops below 4.0 bar)
-        if random.random() < 0.05:
-            pressure_val = int(3.2 * 10)  # Low Pressure
-            compressor_status = 2  # FAULT
-            log.warning("Simulator Action: Simulating Critical Fault Event (Low Pressure)!")
-        
-        values = [
+    def update_readings(self) -> list[int]:
+        self.cycle += 1
+
+        if self.cycle % self.bed_cycle_length == 0:
+            self.bed_a_status = 1 if self.bed_b_status == 1 else 0
+            self.bed_b_status = 1 - self.bed_a_status
+
+        if self.fault_timer > 0:
+            self.fault_timer -= 1
+            self.compressor_status = 2
+            self.pressure = self.clamp(self.pressure - random.uniform(0.1, 0.3), 3.0, 4.5)
+            self.purity = self.clamp(self.purity - random.uniform(0.4, 0.9), 85.0, 92.0)
+            self.temperature = self.clamp(self.temperature + random.uniform(0.5, 1.2), 70.0, 85.0)
+            self.tank_level = self.clamp(self.tank_level + random.uniform(-0.5, 0.0), 55.0, 88.0)
+        else:
+            if self.compressor_status == 2:
+                self.compressor_status = 1
+            self.pressure = self.clamp(self.pressure + random.uniform(-0.06, 0.06), 5.8, 6.8)
+            self.purity = self.clamp(self.purity + random.uniform(-0.1, 0.1), 93.0, 95.5)
+            self.flow_rate = self.clamp(self.flow_rate + random.uniform(-1.5, 1.5), 115.0, 130.0)
+            self.temperature = self.clamp(self.temperature + random.uniform(-0.3, 0.3), 34.0, 40.0)
+            self.tank_level = self.clamp(self.tank_level + random.uniform(-0.4, 0.4), 65.0, 92.0)
+
+            if random.random() < 0.05:
+                self.fault_timer = random.randint(3, 5)
+                self.compressor_status = 2
+                log.warning("Simulator Action: Simulating transient compressor fault for %s cycles", self.fault_timer)
+
+        pressure_val = int(round(self.pressure * 10))
+        purity_val = int(round(self.purity * 10))
+        flow_rate_val = int(round(self.flow_rate))
+        temperature_val = int(round(self.temperature))
+        tank_level_val = int(round(self.tank_level))
+
+        return [
             pressure_val,
             purity_val,
             flow_rate_val,
             temperature_val,
             tank_level_val,
-            compressor_status,
-            bed_a_status,
-            bed_b_status
+            self.compressor_status,
+            self.bed_a_status,
+            self.bed_b_status,
         ]
-        
-        # Write the dynamic values into the server's active runtime register memory in-place
-        offset = address - start_address
-        for i in range(min(count, len(values) - offset)):
-            current_registers[offset + i] = values[offset + i]
-            
-        log.info(f"Simulator Action: Updated active registers on-the-fly: {current_registers[offset : offset + count]}")
+
+simulator = PlantSimulator()
+
+async def plc_action(function_code, start_address, address, count, current_registers, set_values):
+    if function_code != 3:
+        return None
+
+    values = simulator.update_readings()
+    offset = address - start_address
+    for i in range(min(count, len(values) - offset)):
+        current_registers[offset + i] = values[offset + i]
+
+    if simulator.cycle % 5 == 0 or simulator.compressor_status == 2:
+        log.info(
+            "Simulator read cycle=%s values=%s",
+            simulator.cycle,
+            values,
+        )
+
     return None
 
 async def run_server():
-    # Initial holding registers values (address 1, 8 values):
-    hr_block = ModbusSequentialDataBlock(1, [55, 935, 120, 35, 72, 1, 1, 0])
-    
+    hr_block = ModbusSequentialDataBlock(1, [63, 941, 122, 37, 80, 1, 1, 0])
+
     store = ModbusDeviceContext(
-        di=ModbusSequentialDataBlock(1, [0]*10),
-        co=ModbusSequentialDataBlock(1, [0]*10),
+        di=ModbusSequentialDataBlock(1, [0] * 10),
+        co=ModbusSequentialDataBlock(1, [0] * 10),
         hr=hr_block,
-        ir=ModbusSequentialDataBlock(1, [0]*10)
+        ir=ModbusSequentialDataBlock(1, [0] * 10),
     )
-    
-    # Assign custom runtime interceptor action
+
     store.simdevice.action = plc_action
-    
+
     context = ModbusServerContext(devices=store, single=True)
-    
+
     log.info("Starting Modbus TCP Simulator on 127.0.0.1:5020 with dynamic runtime interceptor")
     await StartAsyncTcpServer(
         context=context,
         address=("127.0.0.1", 5020),
-        identity=ModbusDeviceIdentification()
+        identity=ModbusDeviceIdentification(),
     )
 
 if __name__ == "__main__":

@@ -7,29 +7,29 @@ The collector never knows what a value *means* — Laravel decides that using `r
 
 ## Module 1 — Core Infrastructure
 
-### 1.1 Database
-- [ ] `hospitals` / `sites` tables (design for multi-hospital from the start, even with only Kijabe today)
-- [ ] Create `drivers` table: `id`, `name` (e.g. "Schneider M221 Driver"), `protocol`, `supports_holding_registers`, `supports_input_registers`, `supports_coils`, `supports_discrete_inputs`, `supports_writes`, `max_registers_per_request`, `max_concurrent_requests` — capabilities live here, not on equipment, since every device using the same driver shares them
-- [ ] Update `equipment` table: `id`, `site_id`, `driver_id` (FK, replaces separate capability fields), `name`, `manufacturer`, `model`, `device_type`, `location` (e.g. "Plant Room", "ICU", "Building A"), `ip_address`, `port`, `unit_id`, `poll_interval`, `enabled`, `last_seen`, `status`
-- [ ] Create `register_groups`: `id`, `equipment_id`, `name` (e.g. "Pressure", "Flow", "Temperature")
-- [ ] Create `poll_profiles`: `id`, `name`, `interval_seconds`, `priority` (Critical / Normal / Low), `enabled` — allows disabling a whole profile (e.g. "Fast") without deleting it
-- [ ] Create `register_definitions`: `id`, `equipment_id`, `register_group_id`, `address`, `register_type` (enum: `HOLDING`, `INPUT`, `COIL`, `DISCRETE`), `data_type`, `poll_profile_id`, `display_order`, `enabled`, `graph_enabled` — the current, stable identity of a register *(note: may eventually evolve into a protocol-agnostic `telemetry_points` concept if OPC UA/MQTT support is added — not renaming now, just leaving the note)*
-- [ ] Create `register_definition_versions`: `id`, `register_definition_id` (FK), `name`, `description`, `scale`, `offset`, `unit`, `decimals`, `effective_from` — a register keeps ONE `register_definitions` row for life; only naming/scale/unit changes get a new version row, avoiding duplicate register records for a five-year-old register that just had its scale corrected
-- [ ] Create `alarm_rules` table (separate entity, not fields on `register_definitions`, since one register can have multiple rules): `id`, `register_definition_id`, `condition`, `threshold(s)`, `severity`, `enabled`
-- [ ] Create `poll_cycles`: `id`, `equipment_id`, `started_at`, `finished_at`, `status`, `duration` — one row per polling pass over a device
-- [ ] Create `telemetry`: `id`, `poll_cycle_id` (FK), `register_definition_id` (FK), `raw_value`, `device_timestamp` (nullable), `collector_timestamp`, `quality` (enum, see below), `poll_duration_ms`
-- [ ] Define `quality` as a proper enum/lookup table, not free text: `GOOD`, `BAD`, `TIMEOUT`, `ILLEGAL_ADDRESS`, `DEVICE_OFFLINE`, `COMMUNICATION_ERROR` — prevents typo variants like `TimeOut` vs `timeout` vs `TIMEOUT`
-- [ ] Define `equipment.status` as a proper enum, not free text: `ONLINE`, `OFFLINE`, `CONNECTING`, `ERROR`, `DISABLED`, `UNKNOWN`
-- [ ] Update `alarms` table (active/historical alarm instances) to reference `alarm_rules`
-- [ ] Create `config_change_history`: `id`, `table_name`, `record_id`, `field`, `old_value`, `new_value`, `changed_by`, `changed_at`, `reason`
-- [ ] Create `event_logs` table (separate from telemetry and alarms): `id`, `event_type`, `category` (enum: `SYSTEM`, `DEVICE`, `SECURITY`, `CONFIGURATION`, `COLLECTOR`), `message`, `related_equipment_id` (nullable), `related_user_id` (nullable), `occurred_at` — for events like collector started, device connected/disconnected, config imported, register map imported, device added, user logged in
-- [ ] Design telemetry retention policy: keep raw telemetry for N months, then archive/aggregate into hourly/daily summaries
-- [ ] Write and run all migrations — use `BIGINT UNSIGNED AUTO_INCREMENT` primary keys throughout (integers, not UUIDs — appropriate for a single hospital / single database / single collector deployment; revisit only if distributed collectors or cross-hospital sync become a real requirement)
-- [ ] Add indexes: `telemetry(register_definition_id, collector_timestamp)`, `telemetry(poll_cycle_id)`, `equipment(ip_address)`, `register_definitions` unique on `(equipment_id, address, register_type)`, `alarm_rules(register_definition_id)`
-- [ ] Seed test hospital/site/equipment + unknown registers for local dev
+### ~~1.1 Database~~ [x] completed
+- [x] ~~`hospitals` / `sites` tables (design for multi-hospital from the start, even with only Kijabe today)~~
+- [x] ~~Create `drivers` table: `id`, `name` (e.g. "Schneider M221 Driver"), `protocol`, `supports_holding_registers`, `supports_input_registers`, `supports_coils`, `supports_discrete_inputs`, `supports_writes`, `max_registers_per_request`, `max_concurrent_requests` — capabilities live here, not on equipment, since every device using the same driver shares them~~
+- [x] ~~Update `equipment` table: `id`, `site_id`, `driver_id` (FK, replaces separate capability fields), `name`, `manufacturer`, `model`, `device_type`, `location` (e.g. "Plant Room", "ICU", "Building A"), `ip_address`, `port`, `unit_id`, `poll_interval`, `enabled`, `last_seen`, `status`~~
+- [x] ~~Create `register_groups`: `id`, `equipment_id`, `name` (e.g. "Pressure", "Flow", "Temperature")~~
+- [x] ~~Create `poll_profiles`: `id`, `name`, `interval_seconds`, `priority` (Critical / Normal / Low), `enabled` — allows disabling a whole profile (e.g. "Fast") without deleting it~~
+- [x] ~~Create `register_definitions`: `id`, `equipment_id`, `register_group_id`, `address`, `register_type` (enum: `HOLDING`, `INPUT`, `COIL`, `DISCRETE`), `data_type`, `poll_profile_id`, `display_order`, `enabled`, `graph_enabled` — the current, stable identity of a register *(note: may eventually evolve into a protocol-agnostic `telemetry_points` concept if OPC UA/MQTT support is added — not renaming now, just leaving the note)*~~
+- [x] ~~Create `register_definition_versions`: `id`, `register_definition_id` (FK), `name`, `description`, `scale`, `offset`, `unit`, `decimals`, `effective_from` — a register keeps ONE `register_definitions` row for life; only naming/scale/unit changes get a new version row, avoiding duplicate register records for a five-year-old register that just had its scale corrected~~
+- [x] ~~Create `alarm_rules` table (separate entity, not fields on `register_definitions`, since one register can have multiple rules): `id`, `register_definition_id`, `condition`, `threshold(s)`, `severity`, `enabled`~~
+- [x] ~~Create `poll_cycles`: `id`, `equipment_id`, `started_at`, `finished_at`, `status`, `duration` — one row per polling pass over a device~~
+- [x] ~~Create `telemetry`: `id`, `poll_cycle_id` (FK), `register_definition_id` (FK), `raw_value`, `device_timestamp` (nullable), `collector_timestamp`, `quality` (enum, see below), `poll_duration_ms`~~
+- [x] ~~Define `quality` as a proper enum/lookup table, not free text: `GOOD`, `BAD`, `TIMEOUT`, `ILLEGAL_ADDRESS`, `DEVICE_OFFLINE`, `COMMUNICATION_ERROR` — prevents typo variants like `TimeOut` vs `timeout` vs `TIMEOUT`~~
+- [x] ~~Define `equipment.status` as a proper enum, not free text: `ONLINE`, `OFFLINE`, `CONNECTING`, `ERROR`, `DISABLED`, `UNKNOWN`~~
+- [x] ~~Update `alarms` table (active/historical alarm instances) to reference `alarm_rules`~~
+- [x] ~~Create `config_change_history`: `id`, `table_name`, `record_id`, `field`, `old_value`, `new_value`, `changed_by`, `changed_at`, `reason`~~
+- [x] ~~Create `event_logs` table (separate from telemetry and alarms): `id`, `event_type`, `category` (enum: `SYSTEM`, `DEVICE`, `SECURITY`, `CONFIGURATION`, `COLLECTOR`), `message`, `related_equipment_id` (nullable), `related_user_id` (nullable), `occurred_at` — for events like collector started, device connected/disconnected, config imported, register map imported, device added, user logged in~~
+- [x] ~~Design telemetry retention policy: keep raw telemetry for N months, then archive/aggregate into hourly/daily summaries~~
+- [x] ~~Write and run all migrations — use `BIGINT UNSIGNED AUTO_INCREMENT` primary keys throughout (integers, not UUIDs — appropriate for a single hospital / single database / single collector deployment; revisit only if distributed collectors or cross-hospital sync become a real requirement)~~
+- [x] ~~Add indexes: `telemetry(register_definition_id, collector_timestamp)`, `telemetry(poll_cycle_id)`, `equipment(ip_address)`, `register_definitions` unique on `(equipment_id, address, register_type)`, `alarm_rules(register_definition_id)`~~
+- [x] ~~Seed test hospital/site/equipment + unknown registers for local dev~~
 
-### 1.2 Collector (Python)
-- [ ] Formally define the **Driver interface** as a class every protocol driver must implement:
+### ~~1.2 Collector (Python)~~ [x] completed
+- [x] ~~Formally define the **Driver interface** as a class every protocol driver must implement:~~
   ```
   class Driver:
       connect()
@@ -39,18 +39,19 @@ The collector never knows what a value *means* — Laravel decides that using `r
       read_points()
       get_capabilities()
   ```
-  This is what lets the collector stay free of `if protocol == "modbus"` branching entirely.
-- [ ] Implement drivers behind that interface: Modbus TCP, Modbus RTU, OPC UA, MQTT, SNMP
-- [ ] Build **Device Driver** layer above communication drivers (e.g. "Schneider M221 Driver") for vendor-specific quirks
-- [ ] Build **Session Manager** between collector and driver: open connection, reuse existing connection, detect disconnects, close idle sessions, automatic reconnect — avoids reconnecting on every single poll
-- [ ] Look up each device's driver capabilities (`drivers` table, via `equipment.driver_id`) before polling so the collector never issues an unsupported function code
-- [ ] Load enabled devices + driver config from the database
-- [ ] Load enabled register definitions per device, respecting each register's `poll_profile` (interval + priority — critical registers get scheduled first under load)
-- [ ] Implement **batch reads**: group contiguous register addresses (e.g. 0–4) into a single Modbus request instead of one-by-one, respecting the driver's `max_registers_per_request`
-- [ ] Wrap each polling pass in a `poll_cycles` row (started_at/finished_at/status/duration); every `telemetry` row references its `poll_cycle_id`
-- [ ] Store raw value + `device_timestamp` (if available) + `collector_timestamp` + quality into `telemetry`
-- [ ] Enforce read-only: only Read Holding/Input Registers, Read Coils, Read Discrete Inputs — no write function codes anywhere
-- [ ] Confirm collector has zero interpretation logic
+  ~~This is what lets the collector stay free of `if protocol == "modbus"` branching entirely.~~
+- [x] ~~Implement Modbus TCP driver~~
+- [ ] Implement additional protocol drivers: Modbus RTU, OPC UA, MQTT, SNMP
+- [x] ~~Build **Device Driver** layer above communication drivers (e.g. "Schneider M221 Driver") for vendor-specific quirks~~
+- [x] ~~Build **Session Manager** between collector and driver: open connection, reuse existing connection, detect disconnects, close idle sessions, automatic reconnect — avoids reconnecting on every single poll~~
+- [x] ~~Look up each device's driver capabilities (`drivers` table, via `equipment.driver_id`) before polling so the collector never issues an unsupported function code~~
+- [x] ~~Load enabled devices + driver config from the database~~
+- [x] ~~Load enabled register definitions per device, respecting each register's `poll_profile` (interval + priority — critical registers get scheduled first under load)~~
+- [x] ~~Implement **batch reads**: group contiguous register addresses (e.g. 0–4) into a single Modbus request instead of one-by-one, respecting the driver's `max_registers_per_request`~~
+- [x] ~~Wrap each polling pass in a `poll_cycles` row (started_at/finished_at/status/duration); every `telemetry` row references its `poll_cycle_id`~~
+- [x] ~~Store raw value + `device_timestamp` (if available) + `collector_timestamp` + quality into `telemetry`~~
+- [x] ~~Enforce read-only: only Read Holding/Input Registers, Read Coils, Read Discrete Inputs — no write function codes anywhere~~
+- [x] ~~Confirm collector has zero interpretation logic~~
 
 ### 1.3 Logging
 - [ ] Structured collector logs: started, connected/disconnected, read failed, timeout, reconnect successful, telemetry stored, poll cycle completed
@@ -172,8 +173,8 @@ The architecture phase is complete. The next mistake to avoid is looping on arch
 
 Build in this order (minimizes rework — later sprints depend on earlier ones):
 
-- [ ] **Sprint 1 — Database**: models, migrations, indexes (Module 1.1)
-- [ ] **Sprint 2 — Drivers**: driver interface, session manager, Modbus TCP driver (Module 1.2)
+- [x] ~~**Sprint 1 — Database**: models, migrations, indexes (Module 1.1)~~
+- [x] ~~**Sprint 2 — Drivers**: driver interface, session manager, Modbus TCP driver (Module 1.2)~~
 - [ ] **Sprint 3 — Collector**: poll cycles, telemetry storage, batch reads (Module 1.2)
 - [ ] **Sprint 4 — Configuration**: devices, registers, poll profiles, drivers admin (Module 3)
 - [ ] **Sprint 5 — Monitoring**: live dashboard, Register Browser, device health (Module 2.1–2.3)

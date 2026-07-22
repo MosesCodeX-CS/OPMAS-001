@@ -6,6 +6,7 @@ use App\Models\Alarm;
 use App\Models\Equipment;
 use App\Models\SensorReading;
 use App\Models\User;
+use Database\Seeders\SprintOneSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -134,5 +135,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now()->subHours(10 - $index),
             ]);
         }
+
+        $this->call(SprintOneSeeder::class);
+        $this->call(SimulatorSeeder::class);
     }
 }

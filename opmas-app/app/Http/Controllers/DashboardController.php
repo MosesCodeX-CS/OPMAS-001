@@ -1,15 +1,22 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\SensorReading;
 use App\Models\Alarm;
 use App\Models\Equipment;
+use App\Services\LatestTelemetryReadingService;
 
 class DashboardController extends Controller
 {
+    protected LatestTelemetryReadingService $readingService;
+
+    public function __construct(LatestTelemetryReadingService $readingService)
+    {
+        $this->readingService = $readingService;
+    }
+
     public function index()
     {
-        $reading = SensorReading::latest_reading();
+        $reading = $this->readingService->latestReading();
         $alarms = Alarm::active()
             ->orderByRaw("CASE severity WHEN 'CRITICAL' THEN 1 WHEN 'WARNING' THEN 2 WHEN 'INFO' THEN 3 ELSE 4 END")
             ->limit(5)
@@ -24,12 +31,12 @@ class DashboardController extends Controller
 
     public function latestReading()
     {
-        return response()->json(SensorReading::latest_reading());
+        return response()->json($this->readingService->latestReading());
     }
 
     public function systemStatus()
     {
-        $reading = SensorReading::latest_reading();
+        $reading = $this->readingService->latestReading();
         $activeAlarms = Alarm::active()
             ->orderByRaw("CASE severity WHEN 'CRITICAL' THEN 1 WHEN 'WARNING' THEN 2 WHEN 'INFO' THEN 3 ELSE 4 END")
             ->orderBy('created_at', 'desc')

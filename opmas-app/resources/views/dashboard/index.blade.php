@@ -429,7 +429,7 @@ path.pipe-3d.active {
         <p class="text-sm text-[#6B7A90] mt-1 flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
             <span>Last updated: </span>
-            <span id="last-updated" class="font-semibold text-[#1A2A3A]">{{ $reading?->updated_at?->diffForHumans() ?? 'No data yet' }}</span>
+            <span id="last-updated" class="font-semibold text-[#1A2A3A]">{{ $reading?->updated_at?->diffForHumans() ?? $reading?->created_at?->diffForHumans() ?? 'No data yet' }}</span>
         </p>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
@@ -1082,7 +1082,7 @@ path.pipe-3d.active {
             <p class="text-[10px] font-bold uppercase tracking-widest text-[#6B7A90] mb-1">Compressor</p>
             <p class="text-2xl font-bold font-mono tracking-tight transition-colors duration-300" id="telemetry-compressor"
                style="color:{{ ($reading?->compressor_status ?? 0) === 1 ? '#10B981' : (($reading?->compressor_status ?? 0) === 2 ? '#EF4444' : '#6B7280') }};">
-                {{ $reading?->compressorStatusLabel() ?? '—' }}
+                {{ ($reading?->compressor_status ?? 0) === 1 ? 'Running' : (($reading?->compressor_status ?? 0) === 2 ? 'Fault' : '—') }}
             </p>
         </div>
         <div class="mt-4 flex justify-between text-[10px] text-[#6B7A90]">
@@ -1562,7 +1562,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('system-status-updated', (event) => {
         const data = event.detail.reading;
         const age = event.detail.reading_age;
-        if (!data) return;
+        console.debug('Dashboard received system-status-updated event', { data, age });
+        if (!data) {
+            console.warn('Dashboard system-status-updated event missing reading');
+            return;
+        }
         updateDashboard(data, age);
     });
 

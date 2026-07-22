@@ -257,9 +257,14 @@
         // Fetch active system status (telemetry + alarms)
         async function fetchSystemStatus() {
             try {
-                const response = await fetch('{{ route('api.system-status') }}');
-                if (!response.ok) return;
+                console.debug('Fetching system status from {{ route('api.system-status') }}');
+                const response = await fetch('{{ route('api.system-status') }}', { credentials: 'same-origin' });
+                if (!response.ok) {
+                    console.warn('System status fetch failed with status', response.status, response.statusText);
+                    return;
+                }
                 const data = await response.json();
+                console.debug('System status fetched', data);
                 
                 window.latestSystemStatus = data;
                 

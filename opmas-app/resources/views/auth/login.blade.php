@@ -20,7 +20,7 @@
                 <div class="inline-flex items-center justify-center w-20 h-16 mb-4">
                     <img src="{{ asset('images/Kijabe-logo.png') }}" alt="AIC Kijabe Hospital" class="max-h-16 max-w-40 object-contain">
                 </div>
-                <h1 class="text-3xl font-light tracking-wide text-white">Kijabe Hospital Portal</h1>
+                <h1 class="text-3xl font-light tracking-wide text-white">AIC KIJABE HOSPITAL</h1>
                 <p class="text-sm mt-2 text-white/90">Oxygen Plant Monitoring System</p>
                 <p class="text-xs mt-0.5 font-mono text-white/80">OPMAS-001 · OX-PLANT-01</p>
             </div>
