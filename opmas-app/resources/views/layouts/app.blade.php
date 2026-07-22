@@ -24,10 +24,16 @@
             --kijabe-text:  #1A2A3A;
             --kijabe-muted: #6B7A90;
         }
+        html, body {
+            overflow-x: hidden;
+        }
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--kijabe-bg);
             color: var(--kijabe-text);
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 100vh;
         }
         .kijabe-card {
             background-color: var(--kijabe-card);
@@ -60,18 +66,70 @@
         .role-badge-user {
             background-color: #059669;
         }
+        @media (max-width: 1024px) {
+            #sidebar {
+                width: 18rem;
+                max-width: calc(100vw - 2rem);
+            }
+            header {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .sidebar-link-active {
+                padding-left: 1rem;
+            }
+            .text-xs {
+                font-size: 0.78rem;
+            }
+            .p-8 {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            #sidebar {
+                width: 100%;
+                max-width: 100%;
+            }
+            #sidebar-overlay {
+                display: block;
+            }
+            header {
+                height: auto;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            .text-xs {
+                font-size: 0.72rem;
+            }
+            .p-8 {
+                padding: 1rem;
+            }
+            .h-16 {
+                height: 3.5rem;
+            }
+            .w-72 {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen text-gray-800 flex">
 
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-black/40 md:hidden" onclick="closeMobileSidebar()"></div>
+
     <!-- Sidebar -->
-    <aside class="w-72 flex flex-col min-h-screen fixed shadow-lg bg-[#19409A] text-white z-30">
-        <!-- Top Accent Green Line (removed) -->
-        <!-- Removed the thin green accent line above the logo as requested -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 flex flex-col overflow-y-auto bg-[#19409A] text-white shadow-lg transition-transform duration-200 -translate-x-full md:translate-x-0">
 
         <!-- Full width white logo header -->
-        <div class="bg-white py-4 px-6 flex justify-center items-center border-b border-gray-100">
-            <img src="{{ asset('images/Kijabe-logo.png') }}" alt="AIC Kijabe Hospital" class="w-full h-auto object-contain" />
+        <div class="bg-white py-4 px-4 flex items-center justify-between border-b border-gray-100">
+            <div class="flex-1 pr-2">
+                <img src="{{ asset('images/Kijabe-logo.png') }}" alt="AIC Kijabe Hospital" class="w-full h-auto object-contain" />
+            </div>
+            <button type="button" onclick="closeMobileSidebar()" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
         </div>
 
         <!-- Navigation Links -->
@@ -177,10 +235,13 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="ml-72 flex-1 min-h-screen flex flex-col">
+    <main class="ml-0 md:ml-72 flex-1 min-h-screen flex flex-col min-w-0 overflow-x-hidden">
         <!-- Top Header Bar -->
         <header class="bg-white border-b border-gray-200 h-16 px-8 flex items-center justify-between z-10 shadow-sm flex-shrink-0">
             <div class="flex items-center gap-4">
+                <button type="button" onclick="openMobileSidebar()" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
                 <div class="flex items-center gap-2">
                     <i data-lucide="activity" class="w-5 h-5 text-[#2B8AC6]"></i>
                     <span class="text-xs font-bold text-[#6B7A90] uppercase tracking-wider">AIC Kijabe Hospital Oxygen Plant Registry</span>
@@ -217,7 +278,7 @@
         </header>
 
         <!-- Main Inner Content with padding -->
-        <div class="p-8 flex-1">
+        <div class="p-4 sm:p-6 lg:p-8 flex-1 min-w-0">
             @if(session('status'))
                 <div class="mb-6 rounded-xl border px-5 py-4 text-sm text-[#0F5132] bg-[#D1E7DD] border-[#BADBCC] flex items-center gap-3 animate-fade-in" role="alert">
                     <i data-lucide="check-circle" class="w-5 h-5 text-[#15803D] flex-shrink-0"></i>
@@ -312,6 +373,16 @@
                     </div>
                 `;
             }
+        }
+
+        function openMobileSidebar() {
+            document.getElementById('sidebar').classList.remove('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.remove('hidden');
+        }
+
+        function closeMobileSidebar() {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
         }
 
         function updateHeaderHealth(data, age) {

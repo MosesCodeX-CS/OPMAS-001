@@ -17,16 +17,37 @@
     display: flex;
     flex-direction: column;
 }
+#hmi-mimic-panel {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 #hmi-mimic-panel:fullscreen #hmi-mimic-inner {
-    width: 100% !important;
-    min-width: calc(100vw - 2rem) !important;
+    width: 1580px !important;
+    min-width: 1580px !important;
     transform: scale(1.18);
-    transform-origin: top center;
+    transform-origin: top left;
     padding-bottom: 1.5rem;
 }
 #hmi-mimic-inner {
-    transform-origin: center center;
+    width: 1580px;
+    max-width: none;
+    min-width: 0;
+    transform-origin: top left;
     transition: transform 180ms ease-out, height 180ms ease-out;
+}
+#hmi-mimic-inner, #mimic-canvas-shell {
+    width: 100%;
+    max-width: 100%;
+}
+@media (max-width: 1280px) {
+    #mimic-canvas-shell {
+        padding: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+    #mimic-canvas-shell {
+        padding: 1rem;
+    }
 }
 #mimic-resize-handle {
     height: 12px;
@@ -58,8 +79,9 @@
 .mimic-svg-container {
     position: absolute;
     inset: 0;
-    width: 1440px;
-    height: 420px;
+    width: 100%;
+    height: 100%;
+    max-width: 1580px;
     pointer-events: none;
     z-index: 0;
 }
@@ -441,7 +463,7 @@ path.pipe-3d.active {
 </div>
 
 <!-- Collapsible SCADA Mimic Panel -->
-<div id="hmi-mimic-panel" class="mb-8 bg-white border border-[#DDE3EE] rounded-xl shadow-sm overflow-auto resize-x transition-all duration-500 ease-in-out max-h-0 w-full min-w-[100%]">
+<div id="hmi-mimic-panel" class="mb-8 bg-white border border-[#DDE3EE] rounded-xl shadow-sm overflow-x-hidden overflow-y-hidden transition-all duration-500 ease-in-out max-h-0 w-full">
     <div class="p-5 border-b border-[#DDE3EE] flex justify-between items-center bg-[#F8FAFC] gap-3">
         <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -459,15 +481,15 @@ path.pipe-3d.active {
             </div>
         </div>
     </div>
-    <div id="mimic-canvas-shell" class="p-8 overflow-x-auto bg-[#FAFBFD]">
-        <div id="hmi-mimic-inner" style="height: 420px; width: 1580px;" class="min-w-[1580px] relative py-6 mx-auto select-none">
+    <div id="mimic-canvas-shell" class="p-8 overflow-x-hidden bg-[#FAFBFD] min-w-0 max-w-full">
+        <div id="hmi-mimic-inner" style="height: 420px; width: 1580px; min-width: 0;" class="relative py-6 mx-auto select-none">
             <div id="mimic-stage-popover" class="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 z-40 max-w-[90%] rounded-2xl border border-[#2B8AC6]/25 bg-white/90 backdrop-blur-md shadow-lg px-4 py-2 text-center">
                 <div id="mimic-stage-primary" class="text-[10px] font-extrabold uppercase tracking-[0.26em] text-[#1B3A6B]">Air entering</div>
                 <div id="mimic-stage-detail" class="text-[9px] text-[#6B7A90] font-semibold mt-1 max-w-[760px] leading-relaxed">Ambient air is being drawn into the intake line and routed toward the compressor.</div>
             </div>
             
             <!-- SVG Pipeline Casing & Fluid Flow paths -->
-            <svg class="mimic-svg-container" style="width: 1580px; height: 420px;">
+            <svg class="mimic-svg-container" style="width: 100%; height: 420px; max-width: 1580px;">
                 <path d="M 164 212 L 214 212" class="pipe-casing" />
                 <path d="M 358 212 L 408 212" class="pipe-casing" />
                 <path d="M 552 212 L 562 212" class="pipe-casing" />
@@ -732,7 +754,7 @@ path.pipe-3d.active {
             <i data-lucide="network" class="w-4 h-4"></i>
             <span>Telemetry Pipeline & Data Transmission Architecture</span>
         </h3>
-        <div class="flex flex-col md:flex-row items-center justify-between gap-2 py-4 px-2 bg-white border border-[#DDE3EE] rounded-2xl shadow-sm overflow-x-auto min-w-[1200px]">
+        <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-2 py-4 px-2 bg-white border border-[#DDE3EE] rounded-2xl shadow-sm overflow-x-auto w-full min-w-0">
             <!-- Block 1 -->
             <div class="flex flex-col items-center p-2 rounded-xl w-32 text-center">
                 <i data-lucide="gauge" class="w-6 h-6 text-[#2B8AC6] mb-1"></i>
@@ -828,7 +850,7 @@ path.pipe-3d.active {
 </div>
 
 <!-- Component Info Drawer -->
-<div id="component-drawer" class="fixed right-0 top-0 h-full w-96 bg-white border-l border-[#DDE3EE] shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+<div id="component-drawer" class="fixed right-0 top-0 h-full w-full sm:w-96 bg-white border-l border-[#DDE3EE] shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
     <div class="p-6 border-b border-[#DDE3EE] flex items-center justify-between bg-[#F8FAFC]">
         <h3 id="drawer-title" class="text-sm font-bold text-[#1B3A6B] uppercase tracking-wider">Component Info</h3>
         <button onclick="closeComponentDrawer()" class="p-1 rounded-lg hover:bg-gray-100 text-[#6B7A90] hover:text-[#1A2A3A] transition">
@@ -1232,7 +1254,7 @@ const componentSpecs = {
 let mimicResizeState = null;
 let mimicZoomLevel = 1;
 const mimicBaseHeight = 420;
-const mimicBaseWidth = 1320;
+const mimicBaseWidth = 1580;
 const mimicMaxZoom = 4;
 
 function clamp(value, min, max = Number.POSITIVE_INFINITY) {
@@ -1243,11 +1265,21 @@ function setMimicCanvasZoom(scale) {
     const inner = document.getElementById('hmi-mimic-inner');
     if (!inner) return;
 
-    const newScale = clamp(Number(scale) || 1, 1, mimicMaxZoom);
+    const newScale = clamp(Number(scale) || 1, 0.5, mimicMaxZoom);
     mimicZoomLevel = newScale;
     inner.style.height = (mimicBaseHeight * newScale) + 'px';
+    inner.style.width = mimicBaseWidth + 'px';
+    inner.style.minWidth = mimicBaseWidth + 'px';
     inner.style.transform = 'scale(' + newScale + ')';
-    inner.style.minWidth = (mimicBaseWidth * newScale) + 'px';
+}
+
+function fitMimicToViewport() {
+    const shell = document.getElementById('mimic-canvas-shell');
+    if (!shell) return;
+
+    const availableWidth = shell.clientWidth;
+    const targetScale = Math.min(1, availableWidth / mimicBaseWidth);
+    setMimicCanvasZoom(targetScale);
 }
 
 function zoomMimic(step) {
@@ -1318,21 +1350,12 @@ function syncMimicFullscreenState() {
         panel.style.width = '100vw';
         panel.style.minWidth = '100vw';
         panel.style.maxWidth = '100vw';
-        inner.style.width = '100%';
-        inner.style.minWidth = 'calc(100vw - 2rem)';
-        inner.style.transform = 'scale(1.18)';
-        mimicZoomLevel = 1.18;
+        setMimicCanvasZoom(1.18);
     } else {
         panel.style.width = '100%';
         panel.style.minWidth = '100%';
         panel.style.maxWidth = 'none';
-        inner.style.width = '100%';
-        inner.style.minWidth = (1320 * mimicZoomLevel) + 'px';
-        inner.style.transform = 'scale(' + mimicZoomLevel + ')';
-    }
-
-    if (btnText) {
-        btnText.textContent = isFullscreen ? 'Exit Full Screen' : 'Full Screen';
+        setMimicCanvasZoom(mimicZoomLevel);
     }
 }
 
@@ -1351,7 +1374,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (handle) {
         handle.addEventListener('mousedown', startMimicResizeDrag);
     }
+    fitMimicToViewport();
 });
+
+window.addEventListener('resize', fitMimicToViewport);
 
 function openComponentDrawer(key) {
     const spec = componentSpecs[key];
