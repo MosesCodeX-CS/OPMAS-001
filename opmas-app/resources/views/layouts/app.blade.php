@@ -24,6 +24,9 @@
             --kijabe-text:  #1A2A3A;
             --kijabe-muted: #6B7A90;
         }
+        html {
+            font-size: 18px;
+        }
         html, body {
             overflow-x: hidden;
         }
@@ -31,9 +34,24 @@
             font-family: 'Outfit', sans-serif;
             background-color: var(--kijabe-bg);
             color: var(--kijabe-text);
-            font-size: 16px;
+            font-size: 1.125rem;
             line-height: 1.5;
             min-height: 100vh;
+        }
+        .text-\[6\.5px\] {
+            font-size: 0.39rem;
+        }
+        .text-\[8px\] {
+            font-size: 0.48rem;
+        }
+        .text-\[9px\] {
+            font-size: 0.55rem;
+        }
+        .text-\[10px\] {
+            font-size: 0.62rem;
+        }
+        .text-\[11px\] {
+            font-size: 0.68rem;
         }
         .kijabe-card {
             background-color: var(--kijabe-card);

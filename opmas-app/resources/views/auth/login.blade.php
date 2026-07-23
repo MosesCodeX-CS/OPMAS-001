@@ -6,7 +6,11 @@
     <title>OPMAS — Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        html {
+            font-size: 18px;
+        }
         body {
+            font-size: 1.125rem;
             background:
                 linear-gradient(rgba(7, 21, 39, 0.28), rgba(7, 21, 39, 0.42)),
                 url("{{ asset('images/oxygen-plant-bg.jpg') }}") center / cover no-repeat fixed;
