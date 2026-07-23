@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alarm;
-use App\Models\SensorReading;
+use App\Models\Telemetry;
+use App\Models\PollCycle;
+use App\Models\RegisterDefinition;
+use App\Models\Equipment;
 use App\Models\SystemSetting;
 use Illuminate\Http\Request;
 
@@ -46,26 +49,57 @@ class TelemetryController extends Controller
             $tankLevel = rand(60, 85);
             $compressorStatus = 1; // RUNNING
 
-            $latestReading = SensorReading::query()->latest('created_at')->first();
+            $latestBedA = Telemetry::query()
+                ->join('register_definitions', 'telemetry.register_definition_id', '=', 'register_definitions.id')
+                ->where('register_definitions.address', 7)
+                ->latest('telemetry.created_at')
+                ->select('telemetry.raw_value')
+                ->first();
             $bedA = 1;
             $bedB = 0;
 
-            if ($latestReading) {
-                $bedA = (int) !$latestReading->bed_a_status;
+            if ($latestBedA) {
+                $bedA = (int) !$latestBedA->raw_value;
                 $bedB = (int) !$bedA;
             }
         }
 
-        $reading = SensorReading::create([
-            'pressure'          => $pressure,
-            'purity'            => $purity,
-            'flow_rate'         => $flowRate,
-            'temperature'       => $temperature,
-            'tank_level'        => $tankLevel,
-            'compressor_status' => $compressorStatus,
-            'bed_a_status'      => $bedA,
-            'bed_b_status'      => $bedB,
-        ]);
+        $equipment = Equipment::where('code', 'SIM-127-5020')->first() ?? Equipment::first();
+        if ($equipment) {
+            $pollCycle = PollCycle::create([
+                'equipment_id' => $equipment->id,
+                'started_at' => now(),
+                'finished_at' => now(),
+                'status' => 'COMPLETED',
+                'duration' => 120,
+            ]);
+
+            $telemetryData = [
+                ['address' => 1, 'raw' => (int)round($pressure * 10)],
+                ['address' => 2, 'raw' => (int)round($purity * 10)],
+                ['address' => 3, 'raw' => (int)round($flowRate)],
+                ['address' => 4, 'raw' => (int)round($temperature)],
+                ['address' => 5, 'raw' => (int)round($tankLevel)],
+                ['address' => 6, 'raw' => (int)$compressorStatus],
+                ['address' => 7, 'raw' => (int)$bedA],
+                ['address' => 8, 'raw' => (int)$bedB],
+            ];
+
+            foreach ($telemetryData as $data) {
+                $regId = RegisterDefinition::where('equipment_id', $equipment->id)->where('address', $data['address'])->value('id');
+                if ($regId) {
+                    Telemetry::create([
+                        'poll_cycle_id' => $pollCycle->id,
+                        'register_definition_id' => $regId,
+                        'raw_value' => $data['raw'],
+                        'device_timestamp' => now(),
+                        'collector_timestamp' => now(),
+                        'quality' => 'GOOD',
+                        'poll_duration_ms' => 15,
+                    ]);
+                }
+            }
+        }
 
         // Evaluate Alarm triggers
         $triggeredAlarms = 0;

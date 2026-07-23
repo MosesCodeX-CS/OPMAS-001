@@ -108,106 +108,62 @@ class SimulatorSeeder extends Seeder
             ]);
         }
 
-        $latestCycle = PollCycle::updateOrCreate([
-            'equipment_id' => $equipment->id,
-            'started_at' => now()->subSeconds(5),
-        ], [
-            'finished_at' => now(),
-            'status' => 'COMPLETED',
-            'duration' => 5000,
-        ]);
-
-        if (! DB::table('telemetry')->where('poll_cycle_id', $latestCycle->id)->exists()) {
-            DB::table('telemetry')->insert([
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 1)->value('id'),
-                    'raw_value' => 60,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 2)->value('id'),
-                    'raw_value' => 930,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 3)->value('id'),
-                    'raw_value' => 125,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 4)->value('id'),
-                    'raw_value' => 38,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 5)->value('id'),
-                    'raw_value' => 72,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 6)->value('id'),
-                    'raw_value' => 1,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 7)->value('id'),
-                    'raw_value' => 1,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
-                [
-                    'poll_cycle_id' => $latestCycle->id,
-                    'register_definition_id' => RegisterDefinition::where('equipment_id', $equipment->id)->where('address', 8)->value('id'),
-                    'raw_value' => 0,
-                    'device_timestamp' => now()->subSeconds(5),
-                    'collector_timestamp' => now(),
-                    'quality' => 'GOOD',
-                    'poll_duration_ms' => 100,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ],
+        $now = now();
+        for ($i = 48; $i >= 0; $i--) {
+            $timestamp = $now->copy()->subMinutes($i * 30);
+            
+            $cycle = PollCycle::updateOrCreate([
+                'equipment_id' => $equipment->id,
+                'started_at' => $timestamp,
+            ], [
+                'finished_at' => $timestamp->copy()->addSeconds(5),
+                'status' => 'COMPLETED',
+                'duration' => 5000,
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
             ]);
+
+            if (! DB::table('telemetry')->where('poll_cycle_id', $cycle->id)->exists()) {
+                // Simulate realistic fluctuating values
+                $pressure = 6.0 + sin($i / 5.0) * 0.5 + (rand(-10, 10) / 200.0);
+                $purity = 93.5 + cos($i / 8.0) * 1.5 + (rand(-10, 10) / 100.0);
+                $flowRate = 120 + rand(-5, 5);
+                $temperature = 37 + rand(-2, 2);
+                $tankLevel = 75 - ($i % 10) * 1.5 + rand(-2, 2);
+
+                $telemetryData = [
+                    ['address' => 1, 'raw' => (int)round($pressure * 10)],
+                    ['address' => 2, 'raw' => (int)round($purity * 10)],
+                    ['address' => 3, 'raw' => (int)round($flowRate)],
+                    ['address' => 4, 'raw' => (int)round($temperature)],
+                    ['address' => 5, 'raw' => (int)round($tankLevel)],
+                    ['address' => 6, 'raw' => 1],
+                    ['address' => 7, 'raw' => $i % 2 === 0 ? 1 : 0],
+                    ['address' => 8, 'raw' => $i % 2 === 0 ? 0 : 1],
+                ];
+
+                $insertData = [];
+                foreach ($telemetryData as $data) {
+                    $regId = RegisterDefinition::where('equipment_id', $equipment->id)->where('address', $data['address'])->value('id');
+                    if ($regId) {
+                        $insertData[] = [
+                            'poll_cycle_id' => $cycle->id,
+                            'register_definition_id' => $regId,
+                            'raw_value' => $data['raw'],
+                            'device_timestamp' => $timestamp,
+                            'collector_timestamp' => $timestamp,
+                            'quality' => 'GOOD',
+                            'poll_duration_ms' => 100,
+                            'created_at' => $timestamp,
+                            'updated_at' => $timestamp,
+                        ];
+                    }
+                }
+
+                if (!empty($insertData)) {
+                    DB::table('telemetry')->insert($insertData);
+                }
+            }
         }
     }
 }

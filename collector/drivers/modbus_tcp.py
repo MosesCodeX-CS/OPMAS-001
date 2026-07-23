@@ -42,9 +42,9 @@ class ModbusTcpDriver(Driver):
             raise RuntimeError("Client is not connected")
 
         if register_type == "HOLDING":
-            result = self.client.read_holding_registers(address=address, count=1, device_id=self.unit_id)
+            result = self.client.read_holding_registers(address=address - 1, count=1, device_id=self.unit_id)
         elif register_type == "INPUT":
-            result = self.client.read_input_registers(address=address, count=1, device_id=self.unit_id)
+            result = self.client.read_input_registers(address=address - 1, count=1, device_id=self.unit_id)
         else:
             raise ValueError(f"Unsupported register type: {register_type}")
 
@@ -89,17 +89,17 @@ class ModbusTcpDriver(Driver):
                     chunk_end = min(range_end, chunk_start + max_registers - 1)
                     count = chunk_end - chunk_start + 1
                     if register_type == "HOLDING":
-                        result = self.client.read_holding_registers(address=chunk_start, count=count, device_id=self.unit_id)
+                        result = self.client.read_holding_registers(address=chunk_start - 1, count=count, device_id=self.unit_id)
                     else:
-                        result = self.client.read_input_registers(address=chunk_start, count=count, device_id=self.unit_id)
+                        result = self.client.read_input_registers(address=chunk_start - 1, count=count, device_id=self.unit_id)
 
                     if result.isError() or result.registers is None:
                         for address in range(chunk_start, chunk_end + 1):
                             try:
                                 if register_type == "HOLDING":
-                                    single_result = self.client.read_holding_registers(address=address, count=1, device_id=self.unit_id)
+                                    single_result = self.client.read_holding_registers(address=address - 1, count=1, device_id=self.unit_id)
                                 else:
-                                    single_result = self.client.read_input_registers(address=address, count=1, device_id=self.unit_id)
+                                    single_result = self.client.read_input_registers(address=address - 1, count=1, device_id=self.unit_id)
                             except Exception:
                                 results.append({
                                     "address": address,

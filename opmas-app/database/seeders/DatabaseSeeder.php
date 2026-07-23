@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Alarm;
 use App\Models\Equipment;
-use App\Models\SensorReading;
+
 use App\Models\User;
 use Database\Seeders\SprintOneSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -121,20 +121,7 @@ class DatabaseSeeder extends Seeder
             'resolved_at' => now(),
         ]);
 
-        foreach (range(1, 10) as $index) {
-            SensorReading::create([
-                'pressure' => 6.5 + $index * 0.1,
-                'purity' => 92.0 + $index * 0.2,
-                'flow_rate' => 110 + $index * 5,
-                'temperature' => 42 + $index * 0.5,
-                'tank_level' => 65 + $index * 2,
-                'compressor_status' => $index % 3 === 0 ? 2 : 1,
-                'bed_a_status' => $index % 2 === 0 ? 1 : 0,
-                'bed_b_status' => $index % 2 === 1 ? 1 : 0,
-                'created_at' => now()->subHours(10 - $index),
-                'updated_at' => now()->subHours(10 - $index),
-            ]);
-        }
+
 
         $this->call(SprintOneSeeder::class);
         $this->call(SimulatorSeeder::class);

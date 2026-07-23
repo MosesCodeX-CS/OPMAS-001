@@ -326,6 +326,12 @@ def poll_register_group(connection, session: SessionManager, equipment: dict[str
                 poll_duration_ms=None,
             )
         update_equipment_last_seen(connection, equipment['equipment_id'], status='ONLINE')
+        logger.info(
+            'Poll cycle %s completed for equipment_id=%s. Read %s values successfully.',
+            poll_cycle_id,
+            equipment['equipment_id'],
+            len(values)
+        )
     except Exception as exc:
         logger.exception('Poll failed for equipment_id=%s profile_id=%s', equipment['equipment_id'], group['profile_id'])
         status = 'FAILED'
