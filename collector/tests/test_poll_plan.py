@@ -59,7 +59,9 @@ def create_test_schema(connection: sqlite3.Connection) -> None:
             port INTEGER,
             unit_id INTEGER,
             poll_interval INTEGER,
-            enabled INTEGER
+            enabled INTEGER,
+            last_seen TEXT,
+            status TEXT DEFAULT 'UNKNOWN'
         );
         CREATE TABLE poll_profiles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -322,6 +324,87 @@ class PollPlanTestCase(unittest.TestCase):
         group = plan[0]['poll_groups'][0]
         self.assertEqual(group['interval_seconds'], 7)
         self.assertIsNone(group['profile_id'])
+
+    def test_poll_register_group_creates_poll_cycle_and_telemetry_rows(self):
+        connection = sqlite3.connect(':memory:')
+        create_test_schema(connection)
+
+        cursor = connection.cursor()
+        cursor.execute(
+            'INSERT INTO drivers (protocol, supports_holding_registers, supports_input_registers, supports_coils, supports_discrete_inputs, supports_writes, max_registers_per_request, max_concurrent_requests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            ('MODBUS_TCP', 1, 0, 0, 0, 0, 125, 1),
+        )
+        driver_id = cursor.lastrowid
+
+        cursor.execute(
+            'INSERT INTO equipment (driver_id, name, ip_address, port, unit_id, poll_interval, enabled) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            (driver_id, 'Collector Equipment', '127.0.0.1', 5020, 1, 5, 1),
+        )
+        equipment_id = cursor.lastrowid
+
+        register_ids = []
+        for address in (1, 2, 3):
+            cursor.execute(
+                'INSERT INTO register_definitions (equipment_id, address, register_type, data_type, enabled) VALUES (?, ?, ?, ?, ?)',
+                (equipment_id, address, 'HOLDING', 'INTEGER', 1),
+            )
+            register_ids.append(cursor.lastrowid)
+        connection.commit()
+
+        class DummyDriver:
+            def __init__(self, *args, **kwargs):
+                pass
+
+            def read_points(self, points):
+                return [
+                    {'address': address, 'register_type': 'HOLDING', 'value': 100 + address}
+                    for address, _ in points
+                ]
+
+        class DummySession:
+            def __init__(self, driver):
+                self.driver = driver
+
+            def ensure_connected(self):
+                return True
+
+            def disconnect(self):
+                pass
+
+        equipment = {
+            'equipment_id': equipment_id,
+            'poll_interval': 5,
+            'protocol': 'MODBUS_TCP',
+            'supports_holding_registers': True,
+            'supports_input_registers': False,
+            'supports_coils': False,
+            'supports_discrete_inputs': False,
+            'supports_writes': False,
+            'max_registers_per_request': 125,
+            'max_concurrent_requests': 1,
+        }
+        group = {
+            'profile_id': None,
+            'interval_seconds': 5,
+            'priority': 'NORMAL',
+            'definitions': [
+                {'register_definition_id': register_ids[0], 'address': 1, 'register_type': 'HOLDING'},
+                {'register_definition_id': register_ids[1], 'address': 2, 'register_type': 'HOLDING'},
+                {'register_definition_id': register_ids[2], 'address': 3, 'register_type': 'HOLDING'},
+            ],
+        }
+
+        main.DB_DRIVER = 'sqlite'
+        main.poll_register_group(connection, DummySession(DummyDriver()), equipment, group)
+
+        cursor.execute('SELECT COUNT(*) FROM poll_cycles')
+        self.assertEqual(cursor.fetchone()[0], 1)
+
+        cursor.execute('SELECT COUNT(*) FROM telemetry')
+        self.assertEqual(cursor.fetchone()[0], 3)
+
+        cursor.execute('SELECT status FROM poll_cycles')
+        self.assertEqual(cursor.fetchone()[0], 'COMPLETED')
 
     def test_run_legacy_cycle_inserts_telemetry_with_static_map(self):
         connection = sqlite3.connect(':memory:')

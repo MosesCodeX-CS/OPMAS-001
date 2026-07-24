@@ -84,7 +84,7 @@ The collector never knows what a value *means* — Laravel decides that using `r
 - [ ] `alarm_rules` as their own entity linked to a register (not fields on `register_definitions`) — supports multiple rules per register, e.g. Pressure < 5 = Warning, Pressure < 3 = Critical
 - [ ] Full operator set per rule: `>`, `<`, `>=`, `<=`, `==`, `!=`, `BETWEEN`, `OUTSIDE RANGE`
 - [ ] On new telemetry: fetch latest raw value → apply scale → evaluate against active `alarm_rules` → create alarm if triggered
-- [ ] Alarm acknowledgement flow (`resolved_by`, resolved timestamp)
+- [ ] Alarm acknowledgementhttps://kijabehospital.or.ke/images/hospital-logo.png flow (`resolved_by`, resolved timestamp)
 - [ ] Alarm history view
 
 ---
@@ -173,9 +173,9 @@ The architecture phase is complete. The next mistake to avoid is looping on arch
 
 Build in this order (minimizes rework — later sprints depend on earlier ones):
 
-- [x] ~~**Sprint 1 — Database**: models, migrations, indexes (Module 1.1)~~
-- [x] ~~**Sprint 2 — Drivers**: driver interface, session manager, Modbus TCP driver (Module 1.2)~~
-- [ ] **Sprint 3 — Collector**: poll cycles, telemetry storage, batch reads (Module 1.2)
+- [x] **Sprint 1 — Database**: models, migrations, indexes (Module 1.1)
+- [x] **Sprint 2 — Drivers**: driver interface, session manager, Modbus TCP driver (Module 1.2)
+- [x] **Sprint 3 — Collector**: poll cycles, telemetry storage, batch reads (Module 1.2)
 - [ ] **Sprint 4 — Configuration**: devices, registers, poll profiles, drivers admin (Module 3)
 - [ ] **Sprint 5 — Monitoring**: live dashboard, Register Browser, device health (Module 2.1–2.3)
 - [ ] **Sprint 6 — Alarms & Auditability**: alarm engine, event logs, config change history (Module 2.4, 1.3, 4)
