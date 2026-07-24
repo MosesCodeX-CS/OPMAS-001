@@ -39,3 +39,4 @@ collector/collector.log
 # -----------------------------
 .DS_Store
 Thumbs.db
+/.envrc.direnv/
